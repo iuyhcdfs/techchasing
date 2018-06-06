@@ -1,9 +1,9 @@
 a lil reaction time platform for a friend
 
 delivers some visuals and requires the required button answer
-just needs to work, so expect everything you want to be inside index.html :)
+no elegance requested. everything is in index.html muahaha
 
-saves results somewhere meaningful
+saves results somewhere meaningful... but not right now :)
 
 current placeholder gifs are made by kadano
 https://www.ssbwiki.com/User:Kadano 

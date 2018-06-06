@@ -2,27 +2,87 @@
 <html>
 <body>
 
+<script>
+  var time = 0;
+  var testRunning = 0;
+  var currentImage = "";
+  function runtest() {
+    // sort out which ones we're actually using
+    var gifCount = 0;
+    var idArray = [];
+    if(document.querySelector('.spot:checked') != null) {
+      idArray[gifCount] = "gifspot";
+      gifCount++;
+    }
+    if(document.querySelector('.left:checked') != null) {
+      idArray[gifCount] = "gifleft";
+      gifCount++;
+    }
+    if(document.querySelector('.right:checked') != null) {
+      idArray[gifCount] = "gifright";
+      gifCount++;
+    }
+    if(document.querySelector('.miss:checked') != null) {
+      idArray[gifCount] = "gifmiss";
+      gifCount++;
+    }
+    if(gifCount == 0) {
+      return;
+    }
+    testRunning = 1;
+    var select = Math.floor(Math.random()*100) % gifCount;
+    currentImage = idArray[select];
+    //console.log(currentImage);
+    //console.log(gifCount);
+    //console.log(select);
+    document.getElementById(currentImage).style.display = "block";
+    time = (new Date()).getTime();
+  }
+  
+  window.onkeyup = function(e) {
+   if(testRunning == 0) {return;}
+   var key = e.keyCode ? e.keyCode : e.which;
+   if (key == 37) { //left
+     alert("you pressed left and time passed was "+ ((new Date()).getTime() - time) + " milliseconds"); 
+   } else if (key == 38) { //up
+     alert("you pressed up and time passed was "+ ((new Date()).getTime() - time) + " milliseconds");
+   } else if (key == 39) { //right
+     alert("you pressed right and time passed was "+ ((new Date()).getTime() - time) + " milliseconds");
+   } else if (key == 40) { //down
+     alert("you pressed down and time passed was "+ ((new Date()).getTime() - time) + " milliseconds");
+   } else {
+     return;
+   }
+   testRunning = 0;
+   document.getElementById(currentImage).style.display = "none";
+  }
+</script>
+
 <h2>Techchasing</h2>
 See which way fox does a tech-recovery. Respond with the appropriate direction on your keyboard.
 <br><br>
   Name:<br>
-  <input type="text" name="name" value="e.g. jeremiah">
+  <input type="text" name="name" value="">
   <br><br>
   Main:<br>
-  <input type="text" name="main" value="e.g. roy mc'cloud">
+  <input type="text" name="main" value="">
   <br>
 
   <h3>Settings</h3>
   Toggle possible techs<br>
-  <input type="checkbox" id="tech" name="tech" value="On the Spot" checked> On the Spot <br>
-  <input type="checkbox" id="techleft" name="techleft" value="Roll Left" checked> Roll Left <br>
-  <input type="checkbox" id="techright" name="techright" value="Roll Right" checked> Roll Right <br>
-  <input type="checkbox" id="techmiss" name="techmiss" value="Missed Tech" checked> Missed Tech <br>
+  <input class="spot" type="checkbox" id="tech" name="tech" value="On the Spot" checked> On the Spot <br>
+  <input class="left" type="checkbox" id="techleft" name="techleft" value="Roll Left" checked> Roll Left <br>
+  <input class="right" type="checkbox" id="techright" name="techright" value="Roll Right" checked> Roll Right <br>
+  <input class="miss" type="checkbox" id="techmiss" name="techmiss" value="Missed Tech" checked> Missed Tech <br>
   <br>
   <button type ="button" onclick="runtest();"> Start the test! </button> <br>
   <br>
 
-  <img src="placeholder_left.gif" alt="probably some marth up-b tech right now">
+  <img src="placeholder_left.gif" id="gifleft" style="display:none" alt="probably some marth up-b tech right now">
+  <img src="placeholder_right.gif" id="gifright" style="display:none" alt="probably some falco ledgestall">
+  <img src="placeholder_center.gif" id="gifspot" style="display:none" alt="probably some falcon haxdash with fastfall">
+  <img src="placeholder_missed.gif" id="gifmiss" style="display:none" alt="probably some falcon haxdash">
  
 </body>
+
 </html>
