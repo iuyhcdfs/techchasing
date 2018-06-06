@@ -3,11 +3,21 @@
 <body>
 
 <script>
+  var loadCount = 0;
+  function imageLoaded() {
+    loadCount++;
+    if(loadCount == 4) {
+      document.getElementById("loading text").innerHTML = "Assets loaded! Click the button to begin";
+      document.getElementById("start button").style.display = "block";
+    } 
+  }
+
   var time = 0;
   var testRunning = 0;
   var currentImage = "";
   function runtest() {
     // sort out which ones we're actually using
+    if(testRunning == 1) {return;}
     var gifCount = 0;
     var idArray = [];
     if(document.querySelector('.spot:checked') != null) {
@@ -59,7 +69,8 @@
 </script>
 
 <h2>Techchasing</h2>
-See which way fox does a tech-recovery. Respond with the appropriate direction on your keyboard.
+See which way fox does a tech-recovery. Respond with the appropriate direction with arrow keys<br>
+Currently with placeholder images.
 <br><br>
   Name:<br>
   <input type="text" name="name" value="eg: rcj">
@@ -75,13 +86,14 @@ See which way fox does a tech-recovery. Respond with the appropriate direction o
   <input class="right" type="checkbox" id="techright" name="techright" value="Roll Right" checked> Roll Right <br>
   <input class="miss" type="checkbox" id="techmiss" name="techmiss" value="Missed Tech" checked> Missed Tech <br>
   <br>
-  <button type ="button" onclick="runtest();"> Start the test! </button> <br>
+  <div id="loading text">Loading test assets, please wait</div>
+  <button type ="button" id="start button" style="display:none" onclick="runtest();"> Start the test! </button> <br>
   <br>
 
-  <img src="placeholder_left.gif" id="gifleft" style="display:none" alt="probably some marth up-b tech right now">
-  <img src="placeholder_right.gif" id="gifright" style="display:none" alt="probably some falco ledgestall">
-  <img src="placeholder_center.gif" id="gifspot" style="display:none" alt="probably some falcon haxdash with fastfall">
-  <img src="placeholder_missed.gif" id="gifmiss" style="display:none" alt="probably some falcon haxdash">
+  <img src="placeholder_left.gif" id="gifleft" onload="imageLoaded();" style="display:none" alt="probably some marth up-b tech right now">
+  <img src="placeholder_right.gif" id="gifright" onload="imageLoaded();" style="display:none" alt="probably some falco ledgestall">
+  <img src="placeholder_center.gif" id="gifspot" onload="imageLoaded();" style="display:none" alt="probably some falcon haxdash with fastfall">
+  <img src="placeholder_missed.gif" id="gifmiss" onload="imageLoaded();" style="display:none" alt="probably some falcon haxdash">
  
 </body>
 
