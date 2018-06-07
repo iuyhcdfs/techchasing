@@ -2,7 +2,7 @@ a lil reaction time platform for a friend.
 
 *no elegance was requested. everything is in index.html*
 
-[you can try it out here](www.sannaigames.com/techchasing)
+[you can try it out here](http://sannaigames.com/techchasing)
 
 made with vanilla.js with love but also haste
 
